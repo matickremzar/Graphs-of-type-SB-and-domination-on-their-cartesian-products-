@@ -1,0 +1,74 @@
+\documentclass{article}
+\usepackage{fancyhdr,amssymb,amsmath,amsthm,bbm,enumerate,mdwlist,url,multirow,hyperref,graphicx,dsfont}
+\usepackage{pdfpages}
+\addtolength{\hoffset}{-1.5cm}
+\addtolength{\textwidth}{3cm}
+\addtolength{\voffset}{-1.5cm}
+\addtolength{\textheight}{3cm}
+
+
+\usepackage[slovene]{babel}
+ \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\begin{document}
+\newtheorem{definition}{Definicija}
+
+
+\title{Graphs of type (SB) and domination on their cartesian products\\ 
+\large Projektna naloga pri predmetu Finančni praktikum }
+\author{Jan Hrastnik, Matic Kremžar}
+\date{11. november 2024}
+\maketitle
+
+\section{Uvod}
+Tema najine projektne naloge je 'Graphs of type (SB) and domination on their cartesian products' oziroma v slovenskem prevodu
+'Grafi tipa (SB) in dominacija na njihovem kartezičnem produktu'.
+
+Projektna naloga bo izvedena v programu Sage.
+
+\section{Osnovna ideja in definicije}
+Delala bova z neusmerjenimi grafi $G = (V,E)$, kjer je $G$ množica vozlišč, $E$ 
+pa množica povezav grafa.
+
+\begin{definition}
+    Graf $G$ je tipa $(SB)$, če je njegov premer enak $2$ in ima dve sosednji vozlišči $v_1, v_2\in V$, da velja:
+    \begin{itemize}
+        \item $v_1$ in $v_2$ nimata skupnega soseda,
+        \item $G$ ima vozlišče $v^*\in V$, ki ni sosednje $v_1$ ali $v_2$; torej $v^*\not\sim v_1$ in $v^*\not\sim v_2$. \newline
+    \end{itemize}
+\end{definition} 
+
+Zapišemo lahko particijo vozlišč grafa $G$ kot $$V(G) = {v_1, v_2} \cup A_1 \cup A_2 \cup A^*,$$
+kjer je $A_1$ množica vozlišč, ki so sosednja $v_1$, $A_2$ množica vozlišč, ki so sosednja $v_2$ in 
+$A^*$ množica vozlišč, ki niso sosednja niti $v_1$ niti $v_2$.
+
+\begin{definition}
+   Podmnožica vozlišč $D\subseteq V$ grafa $G=(V,E)$ se imenuje \emph{dominacijska množica} grafa,
+   če je vsako vozlišče $v\in V$ grafa v množici $D$, ali pa je kakšno njemu sosednje vozlišče
+   v $D$. \emph{Dominacijsko število $\gamma(G)$} grafa je velikost najmanjše dominacijske
+   množice grafa.
+\end{definition}
+
+\begin{definition}
+    Kartezični produkt $G\square H$ grafov $G$ in $H$ je graf, za katerega velja:
+    \begin{itemize}
+        \item vozlišča grafa $G\square H$ so kartezični produkt $V(G)\times V(H)$,
+        \item dve vozlišči $(u,v)$ in $(u',v')$ sta sosednji v grafu $G\square H$ natanko tedaj, ko je:
+        \begin{itemize}
+            \item $u=u'$ in $v$ je sosed $v'$ v $H$, \textbf{ali}
+            \item $v=v'$ in $u$ je sosed $u'$ v $G$.
+        \end{itemize}
+    \end{itemize}
+\end{definition}
+
+\section{Načrt dela}
+
+\begin{enumerate}
+    \item Napisati postopek, ki preveri, ali je dani graf tipa (SB) in poiskati vse take grafe za $n = \lvert V \rvert \leq 10$.
+    \item Naključno konstruirati grafe tipa (SB) za višje $n$.
+    \item Pridobiti nov graf tipa (SB) iz obstoječega s pomočjo majhne modifikacije (na primer dodajanje ali odvzemanje vozlišč ali povezav).
+    \item Preveriti katere vrednosti lahko zavzame dominacijsko število kartezičnega produkta dveh grafov tipa (SB).
+\end{enumerate}
+
+\end{document}
