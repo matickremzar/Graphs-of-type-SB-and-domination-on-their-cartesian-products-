@@ -25,10 +25,10 @@
 Tema najine projektne naloge je 'Graphs of type (SB) and domination on their cartesian products' oziroma v slovenskem prevodu
 'Grafi tipa (SB) in dominacija na njihovem kartezičnem produktu'.
 
-Projektna naloga bo izvedena v programu Sage.
+Projektna naloga bo izvedena v programu SageMath. Obsežni izračuni bodo izvedeni s pomočjo spletne strani CoCalc.
 
 \section{Osnovna ideja in definicije}
-Delala bova z neusmerjenimi grafi $G = (V,E)$, kjer je $G$ množica vozlišč, $E$ 
+Delala bova z usmerjenimi grafi $G = (V,E)$, kjer je $G$ množica vozlišč, $E$ 
 pa množica povezav grafa.
 
 \begin{definition}
@@ -65,10 +65,10 @@ $A^*$ množica vozlišč, ki niso sosednja niti $v_1$ niti $v_2$.
 \section{Načrt dela}
 
 \begin{enumerate}
-    \item Napisati postopek, ki preveri, ali je dani graf tipa (SB) in poiskati vse take grafe za $n = \lvert V \rvert \leq 10$.
-    \item Naključno konstruirati grafe tipa (SB) za višje $n$.
-    \item Pridobiti nov graf tipa (SB) iz obstoječega s pomočjo majhne modifikacije (na primer dodajanje ali odvzemanje vozlišč ali povezav).
-    \item Preveriti katere vrednosti lahko zavzame dominacijsko število kartezičnega produkta dveh grafov tipa (SB).
+    \item Napisati postopek, ki preveri, ali je dani graf tipa (SB) in poiskati vse take grafe za $n = \lvert V \rvert \leq 10$. Prvi pogoj, ki je treba preverit tukaj, je ali ima graf premer 2. To lahko hitro preverimo s SageMath funkcijo \textit{Graph.diameter()}, ki sama proba najti premer na čim bolj optimalen način. Drugi pogoj grafa tipa (SB) je težje za preverit. En način je, da uporabimo matriko sosednosti grafa in se sprehodimo po njej ter iščemo primer vozlišč \(h_1, h_2\), ki bi ustrezale drugemu pogoju. A to bi vse skupaj imelo časovno zahtevnost \(O(|V|^3)\), kjer je \(|V|\) moč množice vozlišč. To pa presega časovno zahtevnost, ki jo imamo pri preverjanju prvega pogoja. Morda obstaja način da se preverjanje drugega pogoja združi s preverjanjem pri prvim, in se s tem pridobi na časovni zahtevnosti.  
+    \item Naključno konstruirati grafe tipa (SB) za višje $n$. Pri tej nalogi imamo namig, ki izbere sosedni vozlišči \(h_1, h_2\) in konstruira množice \(A_1, A_2, A^*\), tako da velja da je \(A_1\) množica vozlišč, ki so sosedna \(h_1\). \(A_2\) se definira analogno. \(A^*\) pa je množiča vozlišč, ki niso sosedna z \(h_1, h_2\). Sedaj, ko dobimo te množice, začnemo naključno vstavljati povezave v množico \(A_1 \cup A_2 \cup A^*\), dokler ne dobimo graf premera 2.
+    \item Pridobiti nov graf tipa (SB) iz obstoječega s pomočjo majhne modifikacije (na primer dodajanje ali odvzemanje vozlišč ali povezav). Pri tej nalogi imamo spet namig, ki deluje podobno kot prej. Konstruirajo se množice \(A_1, A_2, A^*\), naključno dodamo/odvzamemo vozlišča/povezave v \(A_1 \cup A_2 \cup A^*\), in potem dodajamo povezave v tej množici dokler ne dobimo graf tipa (SB).
+    \item Preveriti katere vrednosti lahko zavzame dominacijsko število kartezičnega produkta dveh grafov tipa (SB). Pri tej točki se bomo sklicovali na rezultate, dobljene iz prejšnih nalog.
 \end{enumerate}
 
 \end{document}
