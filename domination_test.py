@@ -1,8 +1,10 @@
 from sage.all import *
 
-g = Graph("EEhw")
+g = Graph("ITm|~z}~g")
 
 prod = g.cartesian_product(g)
 
-s = prod.dominating_set(value_only=True)
-print(s)
+cart = prod.dominating_sets()
+
+for s in cart:
+    print(len(s))
