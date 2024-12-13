@@ -1,3 +1,9 @@
-Projektno delo o grafih tipa (SB). Več v navodilih, pod temo številka 20.
+# Graphs of type (SB) and domination on their cartesian products
+Projektno delo o grafih tipa (SB) za predmet Finančni Praktikum. Več v `Navodila_projekti_FP.pdf`, pod temo številka 20.
 
-Grafi tipa (SB) do vključno vozlišča 10 bodo objavljeni v datoteki na povezavi [tukaj](https://www.dropbox.com/scl/fo/dxkjytzujfw23bq7zrnjb/AB_-NBsKVIcmuKwr2OyKDHY?rlkey=agsevpxbjxz4ymtzu23xsrlne&st=dbj0yd3p&dl=0). Datoteka je velika približno 400MB.
+Mapa `programi` vsebuje vse programe, ki sva jih uporabljala pri projektu.
+Mapa `podatki` pa ima razne podatke, ki so bili zgenerirani in uporabljeni za razne izračune. 
+Grafi tipa (SB) do vključno vozlišča 10 so objavljeni v datoteki `podatki/sb_graphs_g6.txt` v formatu *graph6*.
+
+
+Končno poročilo je na voljo v datoteki `Poročilo.pdf`.

@@ -2,8 +2,6 @@ from sage.all import *
 import time
 
 
-### Same as sb_gen.py, but we save graphs in graph6 format
-
 def is_sb(G: Graph) -> bool:
     # predpostavimo, da je premer grafa enak 2
 
@@ -21,8 +19,8 @@ def is_sb(G: Graph) -> bool:
 
                 # Poiščemo vozlišče, ki ni povezano z i in j
                 nonadj_vertex_exists = any(
-                    not adj[i, k] and not adj[j, k]
-                    for k in range(adj.nrows())
+                    not adj[i, k] and not adj[j, k] 
+                    for k in range(adj.nrows()) 
                     if k != i and k != j
                 )
                 if nonadj_vertex_exists:
@@ -33,12 +31,12 @@ def is_sb(G: Graph) -> bool:
 
 
 start = time.time()
-with open("sb_graphs_g6.txt", "a") as F:
+with open("sb_graphs.txt", "a") as F:
     with open("diam_two_graphs.txt", "r") as G:
         for line in G:
             g = eval("Graph(" + line.rstrip() + ")")
             if is_sb(g):
-                F.write(g.graph6_string() + "\n")
+                F.write(line)
 
 end = time.time()
 diff = round(end-start, 2)

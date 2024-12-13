@@ -9,7 +9,7 @@ lines = []
 # we use Vizing's conjecture here
 # we sample random lines, there's too many SB graphs to check them all
 
-with open("sb_graphs_g6.txt", "r") as F:
+with open("../podatki/sb_graphs_g6.txt", "r") as F:
     for line in F:
         lines.append(line.rstrip())
 
