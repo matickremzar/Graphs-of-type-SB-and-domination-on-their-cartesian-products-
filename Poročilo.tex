@@ -47,6 +47,13 @@ pa množica povezav grafa.
     \end{itemize}
 \end{definition} 
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{GraphPlanarDegrees_ManimCE_v0.18.1.png} % 0.5 pomeni pol širine strani
+    \caption{Skica grafov tipa (SB)}
+    
+\end{figure}
+
 Zapišemo lahko particijo vozlišč grafa $G$ kot $$V(G) = {v_1, v_2} \cup A_1 \cup A_2 \cup A^*,$$
 kjer je $A_1$ množica vozlišč, ki so sosednja $v_1$, $A_2$ množica vozlišč, ki so sosednja $v_2$ in 
 $A^*$ množica vozlišč, ki niso sosednja niti $v_1$ niti $v_2$.
@@ -72,7 +79,7 @@ $A^*$ množica vozlišč, ki niso sosednja niti $v_1$ niti $v_2$.
 
 \section{Naloga 1}
 \subsection{Preverjanje, ali je graf tipa (SB)}
-Sprva je potrebno zapisati kodo, ki preveri, ali je dan graf tipa (SB). Uporabimo matriko sosednosti. Dovolj je, 
+Sprva je potrebno zapisati kodo, ki preveri, ali je dan graf tipa (SB) (v datoteki $sb\_detect\_koncna.py$). Uporabimo matriko sosednosti. Dovolj je, 
 da pregledamo zgolj zgornji trikotnik matrike, saj tako že pridobimo vse podatke o sosedih. Nato 
 preverimo še veljavnost prej zapisanih lastnosti grafov tipa (SB).
 
@@ -264,7 +271,7 @@ spremeniti v graf tipa (SB). Pri tem moramo paziti na premer.
 da naredimo nekaj manjših naključnih modifikacij (npr. dodajanje/odvzemanje 
 vozlišč/povezav). 
 \\
-Koda je dostopna v datoteki $random\_modify\_SB\_graph.ipynb$ na GitHubu, zaradi 
+Koda je dostopna v datoteki $random\_modify\_SB\_graph.py$ na GitHubu, zaradi 
 dolžine pa je zapisana le glavna ideja programa. 
 \\Funkcija $random\_modify\_sb\_graph$ kot argument vzame graf tipa (SB) in 
 ga najprej shrani (kot varovalo za kasneje, če naključne spremembe ne dajo 
@@ -296,7 +303,7 @@ vozlišče, ki je sosedno $v_1$ ($v_2$).
 V praksi se je izkazalo, da ima velika večina grafov tipa (SB) na do $10$
 vozliščih dominacijsko število enako $2$, preostali pa $3$. 
 \\
-Nato lahko vpeljemo Vizingovo konjekturo: Za grafa G in H velja
+Nato lahko vpeljemo Vizingovo domnevo: Za grafa G in H velja
 $$ \gamma(G)*\gamma(H) \leq \gamma(G\square H). $$
 Ta sicer ni dokazana v splošnem, je pa preverjena za zadosten nabor grafov, da jo je smiselno uporabiti v 
 tej nalogi.
@@ -306,7 +313,8 @@ kartezičnem produktu dveh grafov tipa (SB) enako $4$.
 Zanimiva variacija problema bi bila, v kolikor bi bil kartezični produkt nekih
 dveh grafov tipa (SB) spet graf tipa (SB). Posledično bi takoj sledilo, da obstajajo 
 grafi tipa (SB) z dominacijskim številom vsaj $4$. Ko sva pregledala grafe na do $10$ vozliščih, 
-takšnega primera nisva našla. Problem je bil seveda premer kartezičnih produktov grafov.
+takšnega primera nisva našla. Problem je bil seveda premer kartezičnih produktov grafov. Vseh $125000$ grafov, ki 
+sva jih tako generirala je imelo premer $4$.
 \\
 Iskanje zgornjih mej za dominacijsko število kartezičnega produkta dveh grafov tipa (SB) je zahtevnejša.
 Najboljša zgornja meja, ki sva jo uspela najti je še ena Vizingova izpeljava:
