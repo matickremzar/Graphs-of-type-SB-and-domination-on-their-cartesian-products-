@@ -4,7 +4,7 @@ from collections import Counter
 
 lines = []
 
-#  we are looking for a lower bound for the domination number of the cartesian product of two (SB) graphs
+# we are looking for a lower bound for the domination number of the cartesian product of two (SB) graphs
 # we find the domination number with brute-force
 
 with open("../podatki/sb_graphs_g6.txt", "r") as F:
@@ -13,13 +13,11 @@ with open("../podatki/sb_graphs_g6.txt", "r") as F:
 
 domination_numbers = []
 
-for i in range(100):
+for i in range(20):
     line1 = lines[i]
     g1 = Graph(line1)
 
-    if i == 98:
-        break
-    for j in range(i, 100):
+    for j in range(i, 20):
         line2 = lines[j]
         g2 = Graph(line2)
 
