@@ -32,9 +32,6 @@ def is_sb(G: Graph) -> bool:
 sampled_lines = []
 lines = []
 
-# this is an approximation for the upper bound of the domination number of the cartesian product of two (SB) graphs
-# we use Vizing's conjecture here
-
 with open("../podatki/sb_graphs_g6.txt", "r") as F:
     for line in F:
         lines.append(line.rstrip())
