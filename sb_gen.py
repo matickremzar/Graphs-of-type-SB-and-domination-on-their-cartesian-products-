@@ -2,6 +2,7 @@ from sage.all import *
 import time
 
 
+
 def is_sb(G: Graph) -> bool:
     # predpostavimo, da je premer grafa enak 2
 
