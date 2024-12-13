@@ -88,15 +88,15 @@ class GraphPlanarDegrees(Scene):
         circle3.move_to((0, 2.8, 0))
         circle3.z_index=-1
 
-        h1 = Tex('h1', color=BLACK)
+        h1 = Tex(r'h\textsubscript{1}', color=BLACK)
         h1.move_to((-2.8, -3.2, 0))
 
-        h2 = Tex('h2', color=BLACK)
+        h2 = Tex(r'h\textsubscript{2}', color=BLACK)
         h2.move_to((2.8, -3.2, 0))
 
-        a1 = Tex('A1', color=BLACK)
-        a2 = Tex('A2', color=BLACK)
-        astar = Tex('A*', color=BLACK)
+        a1 = Tex(r'A\textsubscript{1}', color=BLACK)
+        a2 = Tex(r'A\textsubscript{2}', color=BLACK)
+        astar = Tex(r'A\textsuperscript{*}', color=BLACK)
         a1.move_to((-4.5, 0, 0))
         a2.move_to((4.5, 0, 0))
         astar.move_to((-1.5, 3, 0))
