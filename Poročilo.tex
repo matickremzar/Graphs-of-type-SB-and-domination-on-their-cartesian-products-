@@ -36,7 +36,7 @@ Cilj je razumeti, kako prepoznati, konstruirati in spreminjati grafe tipa (SB),
 ter analizirati njihove lastnosti, zlasti dominacijsko število njihovih kartezičnih produktov.
 
 \section{Osnovna ideja in definicije}
-Delala sva z usmerjenimi grafi $G = (V,E)$, kjer je $G$ množica vozlišč, $E$ 
+Delala sva z usmerjenimi grafi $G = (V,E)$, kjer je $V$ množica vozlišč, $E$ 
 pa množica povezav grafa.
 
 \begin{definition}
@@ -81,7 +81,7 @@ $A^*$ množica vozlišč, ki niso sosednja niti $v_1$ niti $v_2$.
 \subsection{Preverjanje, ali je graf tipa (SB)}
 Sprva je potrebno zapisati kodo, ki preveri, ali je dan graf tipa (SB) (v datoteki $sb\_detect\_koncna.py$). Uporabimo matriko sosednosti. Dovolj je, 
 da pregledamo zgolj zgornji trikotnik matrike, saj tako že pridobimo vse podatke o sosedih. Nato 
-preverimo še veljavnost prej zapisanih lastnosti grafov tipa (SB).
+preverimo še veljavnost prej zapisanih lastnosti grafov tipa (SB). Najina metoda za preverjanje, ali je graf tipa (SB), ima časovno zahtevnost $O(|V|^3)$.
 
 
 
@@ -128,11 +128,10 @@ preverimo še veljavnost prej zapisanih lastnosti grafov tipa (SB).
 
 
 \subsection{Iskanje vseh grafov tipa (SB) na do 10 vozliščih}
+Nalogo sva si razdelila na 2 dela: prvi je iskanje grafov s premerom 2, in drugi je iskanje grafov tipa (SB) znotraj najdenih grafov s premerom 2.
+Najprej sva v datoteko $diam\_two\_graphs.txt$ zbrala vse grafe s premerom 2 na do 10 vozliščih. To sva storila zato, ker s SageMath lahko dosti hitreje preverimo premer grafa, kot pa če je ta graf tipa (SB). S tem sva si zmanjšala množico kandidatov za grafe tipa (SB).
 
-Najprej sva v datoteko $diam\_two\_graphs.txt$ zbrala vse grafe s premerom 2 na do 10 vozliščih.
-Nato sva te grafe prefiltrirala s spodnjo kodo in podatke zbrala v novi datoteki 
-$sb\_graphs.txt$, ki je dostopna preko hiperpovezave v README datoteki na GitHub repozitoriju projekta.
-Datoteka je velika privližno 400 MB.
+Nato sva te grafe prefiltrirala s spodnjo kodo in podatke sprva zbrala v novi datoteki, ki je bila velika približno 400 MB. Grafe sva shranjevala v formatu slovarja. Kasneje sva spoznala, da lahko grafe bolj kompaktno shranimo v tako imenovan $graph6$ format. S tem sva zmanjšala velikost na le 20MB.
 
 
 \begin{figure}[h!]
@@ -208,6 +207,8 @@ Vzamemo nek graf na $n$ vozliščih in ga s pomočjo smiselnega odvzemanja in do
 (poskušamo doseči na particijo vozlišč, da pridobimo pogoje za (SB)) poskušamo 
 spremeniti v graf tipa (SB). Pri tem moramo paziti na premer.
 
+Tukaj je več možnih idej, kako implementirati metodo, ki bi zgenerirala naključen graf tipa (SB). Midva sva se tega lotila na sledeč način: s SageMath zgeneriramo naključen graf, s pomočjo funkcije \textit{randomGNP(n, p)}, ki sprejme not število željenih vozlišč in verjetnost, ali se naj doda povezava med dvema vozliščema. Nato izberemo naključno povezavo, in vozlišči v tej povezavi označimo z $v_1$ in $v_2$. Nato konstruiramo množice $A_1, A_2, A^*$, kot je navedeno v definiciji grafa tipa (SB). Če je kakšna od teh množic morda prazna, v to prazno množico dodamo novo vozlišče in ustrezne povezave zanj. Nato poskrbimo, da so vsa vozlišča v $A_1$ povezana z vsemi vozlišči v $A^*$, torej tista, ki niso, jih povežemo med seboj. Podobno storimo za vozlišča v $A_2$. S tem je postopek zaključen in smo pridobili graf tipa (SB). Časovna zahtevnost tega algoritma je $O(|V|^2)$.
+
 
 \begin{algorithm}
     \caption{Generiraj naključen SB graf - naloga 2}
@@ -280,9 +281,9 @@ spremeniti v graf tipa (SB). Pri tem moramo paziti na premer.
 da naredimo nekaj manjših naključnih modifikacij (npr. dodajanje/odvzemanje 
 vozlišč/povezav). 
 \\
-Koda je dostopna v datoteki $random\_modify\_SB\_graph.py$ na GitHubu, zaradi 
+Koda je dostopna v datoteki \textit{random\_modify\_SB\_graph.py} na GitHubu, zaradi 
 dolžine pa je zapisana le glavna ideja programa. 
-\\Funkcija $random\_modify\_sb\_graph$ kot argument vzame graf tipa (SB) in 
+\\Funkcija \textit{random\_modify\_sb\_graph} kot argument vzame graf tipa (SB) in 
 ga najprej shrani (kot varovalo za kasneje, če naključne spremembe ne dajo 
 grafa tipa (SB)). Zapiše particijo vozlišč in se odloči za naključno število 
 naključnih sprememb iz nabora. Te spremembe so same po sebi lahke za sprogramirati, paziti 
@@ -308,14 +309,15 @@ poskusih verjetno največkrat problem, da se je povečal premer grafa.
     
 \end{figure}
 
+Znano je, da je iskanje dominacijskega števila za grafe NP-težek problem. Želela bi najti, kakšna so dominacijska števila za kartezične produkte grafov tipa (SB) do 10 vozlišč. Izkaže se, da ne moremo dobiti točnega rezultata, saj je problem prezahteven. Zato bi se namesto tega vprašali, kakšen je možen nabor vrednosti, ki jih lahko zavzame dominacijsko število kartezičnega produkta dveh grafov tipa (SB)? 
 
 Poglejmo za začetek dominacijsko število na običajnih grafih tipa (SB).
-Intuitivno jasno je, da imajo vsi grafi tipa (SB) dominacijsko število najmanj 2. Tudi dokaz je jasen:
+Intuitivno je jasno, da imajo vsi grafi tipa (SB) dominacijsko število najmanj 2. Tudi dokaz je jasen:
 Zapišimo particijo vozlišč nekega grafa tipa (SB), kot je predlagano v osnovni ideji problema.
 Če je v najmanjši dominacijski množici vozlišče $v_1$, imamo zraven pokrito še $v_2$ in 
 $A_1$. Vemo pa, da je $A^*$ neprazna, saj obstaja vozlišče $v^*$, ki ni 
 sosednje $v_1$ ali $v_2$. Torej $v_1$ ni zadosten in potrebujemo vsaj še eno vozlišče v dominacijski množici.
-Analogno sledi za $v_2$. Če je v dominacijski množici neko vozlišče iz $A^*$ ali $A_2$ ($A_1$), rabimo še neko
+Analogno sledi za $v_2$. Če je v dominacijski množici neko vozlišče iz $A^*$ ali $A_2$ ($A_1$), rabimo še kakšno
 vozlišče, ki je sosedno $v_1$ ($v_2$).  
 \\
 Nato lahko vpeljemo Vizingovo domnevo: Za grafa G in H velja
@@ -324,7 +326,7 @@ Ta sicer ni dokazana v splošnem, je pa preverjena za zadosten nabor grafov, da 
 tej nalogi.
 Iz tega lahko trdimo, da je najnižje možno dominacijsko število na 
 kartezičnem produktu dveh grafov tipa (SB) enako $4$. Da je spodnja meja potencialno lahko dosežena, potrjujejo tudi rezultati, ki jih da program 
-$sb\_get\_all\_domination\_numbers.py$. Ti so shranjeni v datoteki $sb\_graphs\_domination\_numbers.txt$.
+\textit{sb\_get\_all\_domination\_numbers.py}. Ti so shranjeni v datoteki \textit{sb\_graphs\_domination\_numbers.txt}.
 V praksi se je izkazalo, da ima velika večina grafov tipa (SB) na do $10$
 vozliščih dominacijsko število enako $2$, preostali pa $3$.
 \\
@@ -332,13 +334,14 @@ Zanimiva variacija problema bi bila, v kolikor bi bil kartezični produkt nekih
 dveh grafov tipa (SB) spet graf tipa (SB). Posledično bi takoj sledilo, da obstajajo 
 grafi tipa (SB) z dominacijskim številom vsaj $4$. Ko sva pregledala grafe na do $10$ vozliščih, 
 takšnega primera nisva našla. Problem je bil seveda premer kartezičnih produktov grafov. Vseh $10000$ grafov, ki 
-sva jih tako generirala je imelo premer $4$. Ta problem je bil reševan z datoteko $sb\_cartesian.py$.
+sva jih tako generirala je imelo premer $4$. Ta problem je bil reševan z datoteko \textit{sb\_cartesian.py}.
 \\
 Iskanje zgornjih mej za dominacijsko število kartezičnega produkta dveh grafov tipa (SB) je zahtevnejša.
 Najboljša zgornja meja, ki sva jo uspela najti je še ena Vizingova izpeljava:
 $$ \gamma(G\square H) \leq min\{\gamma(G)\lvert H \rvert, \gamma(H)\lvert G \rvert\}$$
-\\
-Za prvih $20$ najmanjših (SB) grafov sva poiskala dominacijska števila z Brute-Force metodo ($sb\_domination\_brute\_force.py$). 
+Če uporabimo sedaj še to neenačbo, dobimo, da je zgornja meja dominacijskega števila 30, ko se omejimo na kartezične produkte grafov (SB) do 10 vozlišč. A ni jasno, ali je ta zgornja meja sploh zelo natančna, saj se je izkazalo, da je točen izračun dominacijskega števila grafa s 100 vozlišči zelo zahteven proces, zato tukaj nimava nabora izračunanih dominacijskih števil za te velike grafe, s katerimi bi lahko dobila občutek ali je ta zgornja meja 'dobra' ali ne.
+
+Lahko pa si pogledamo kartezične produkte najmanjših grafov tipa (SB). Za prvih $20$ najmanjših (SB) grafov sva poiskala dominacijska števila z Brute-Force metodo (\textit{sb\_domination\_brute\_force.py}). 
 Koda kartezično pomnoži med seboj prvih $20$ (SB) grafov in pregleda vse dominacijske množice.
 Spodnja meja iz Vizingove domneve ($4$) ni bila dosežena. Le prvi trije kartezični produkti so imeli dominacijsko število 
 $5$, ostali za njimi pa $6$, $7$, $8$ ali $9$. 
@@ -358,10 +361,11 @@ $5$, ostali za njimi pa $6$, $7$, $8$ ali $9$.
     
 \end{table}
 
-%Tudi program $sb\_domination\_sampling\_method.py$ se ukvarja s spodnjimi mejami za dominacijska števila za naključnih $10000$ (SB) grafov (tudi višjih 
-%redov). Pomaga si z Vizingovo domnevo. Uporablja cached_results, da za posamezen graf izračuna dominacijsko število le enkrat.
-%\\
+Tudi program $sb\_domination\_sampling\_method.py$ se ukvarja s spodnjimi mejami za dominacijska števila za naključnih $10000$ (SB) grafov (tudi višjih 
+redov). Pomaga si z Vizingovo domnevo. Uporablja \textit{cached\_results}, da za posamezen graf izračuna dominacijsko število le enkrat. Namesto da gleda 20 najmanjših grafov, je bila ideja da se izbere naključen nabor vseh pridobljenih grafov.
+
 Glede zgornje meje za dominacijsko število sva ugotovila, da gre po vsej verjetnosti z večanjem grafov v 
-neskončnost.
+neskončnost, če bi gledali tudi kartezične produkte grafov tipa (SB) z več kot 10 vozlišči.
+
 
 \end{document}
