@@ -244,19 +244,7 @@ Tukaj je več možnih idej, kako implementirati metodo, ki bi zgenerirala naklju
         \State Dodaj $u$ v seznam $a1$
         \State Dodaj rob $(h1, u)$
     \EndIf
-    \If {dolžina seznama $a2$ je 0}
-        \State $u \gets$ dodaj novo vozlišče
-        \State Dodaj $u$ v seznam $a2$
-        \State Dodaj rob $(h2, u)$
-    \EndIf
-    \If {dolžina seznama $a\_star$ je 0}
-        \State $u \gets$ dodaj novo vozlišče
-        \State Dodaj $u$ v seznam $a\_star$
-        \State $v_{a1} \gets$ prvi element seznama $a1$
-        \State $v_{a2} \gets$ prvi element seznama $a2$
-        \State Dodaj rob $(u, v_{a1})$
-        \State Dodaj rob $(u, v_{a2})$
-    \EndIf
+    \State ...podobno naredimo za $a2$ in $a\_star$
     \For {vsako vozlišče $u$ v seznamu $a1$}
         \For {vsako vozlišče $v$ v seznamu $a\_star$}
             \State Dodaj rob $(u, v)$
