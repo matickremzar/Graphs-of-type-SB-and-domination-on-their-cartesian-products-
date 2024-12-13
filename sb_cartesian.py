@@ -39,7 +39,7 @@ with open("sb_graphs_g6.txt", "r") as F:
     for line in F:
         lines.append(line.rstrip())
 
-    sampled_lines = random.sample(range(len(lines)), 100)
+    sampled_lines = random.sample(range(len(lines)), 10000)
 
 domination_numbers = []
 
@@ -59,13 +59,15 @@ for i, s1 in enumerate(sampled_lines):
 
         cart = g1.cartesian_product(g2)
 
-        if is_sb(cart):
-            #print("Found SB!")
+        diam = cart.diameter()
+        if is_sb(cart) and diam == 2:
+            print("Found SB!")
             #print(cart.graph6_string())
             found_cartesian_products.append(cart.graph6_string())
             pass
         else:
-            print("It's not an SB")
+            #print("It's not an SB, diam: ", diam)
+            pass
 
 with open("sb_cartesian_products.txt", "a") as F:
     for c in found_cartesian_products:
