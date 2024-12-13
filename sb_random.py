@@ -1,5 +1,6 @@
 from sage.all import *
 
+
 def is_sb(G: Graph) -> bool:
     # predpostavimo, da je premer grafa enak 2
 
