@@ -2,7 +2,6 @@ from sage.all import *
 import time
 
 
-
 start = time.time()
 with open("diam_two_graphs.txt", "a") as F:
     for i in range(1, 11):
