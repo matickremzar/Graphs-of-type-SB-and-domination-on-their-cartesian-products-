@@ -7,6 +7,7 @@ lines = []
 
 # this is an approximation for the upper bound of the domination number of the cartesian product of two (SB) graphs
 # we use Vizing's conjecture here
+# we sample random lines, there's too many SB graphs to check them all
 
 with open("sb_graphs_g6.txt", "r") as F:
     for line in F:

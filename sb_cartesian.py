@@ -39,7 +39,7 @@ with open("sb_graphs_g6.txt", "r") as F:
     for line in F:
         lines.append(line.rstrip())
 
-    sampled_lines = random.sample(range(len(lines)), 10000)
+    sampled_lines = random.sample(range(len(lines)), 500)
 
 domination_numbers = []
 
