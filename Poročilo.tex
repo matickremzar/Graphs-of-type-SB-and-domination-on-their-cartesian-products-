@@ -134,6 +134,15 @@ Nato sva te grafe prefiltrirala s spodnjo kodo in podatke zbrala v novi datoteki
 $sb\_graphs.txt$, ki je dostopna preko hiperpovezave v README datoteki na GitHub repozitoriju projekta.
 Datoteka je velika privližno 400 MB.
 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{sb_min_example1.png} % 0.5 pomeni pol širine strani
+    \caption{Graf tipa (SB) na 5 vozliščih}
+    
+\end{figure}
+
+
 \begin{algorithm}
     \caption{Filtriranje grafov tipa (SB)}
     \begin{algorithmic}[1]
@@ -291,6 +300,15 @@ poskusih verjetno največkrat problem, da se je povečal premer grafa.
 
 \section{Naloga 4}
 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{sb_min_cartesian_example.png} % 0.5 pomeni pol širine strani
+    \caption{Kartezični produkt grafa s slike 2 s samim seboj}
+    
+\end{figure}
+
+
 Poglejmo za začetek dominacijsko število na običajnih grafih tipa (SB).
 Intuitivno jasno je, da imajo vsi grafi tipa (SB) dominacijsko število najmanj 2. Tudi dokaz je jasen:
 Zapišimo particijo vozlišč nekega grafa tipa (SB), kot je predlagano v osnovni ideji problema.
@@ -298,28 +316,52 @@ Zapišimo particijo vozlišč nekega grafa tipa (SB), kot je predlagano v osnovn
 $A_1$. Vemo pa, da je $A^*$ neprazna, saj obstaja vozlišče $v^*$, ki ni 
 sosednje $v_1$ ali $v_2$. Torej $v_1$ ni zadosten in potrebujemo vsaj še eno vozlišče v dominacijski množici.
 Analogno sledi za $v_2$. Če je v dominacijski množici neko vozlišče iz $A^*$ ali $A_2$ ($A_1$), rabimo še neko
-vozlišče, ki je sosedno $v_1$ ($v_2$). 
-\\
-V praksi se je izkazalo, da ima velika večina grafov tipa (SB) na do $10$
-vozliščih dominacijsko število enako $2$, preostali pa $3$. 
+vozlišče, ki je sosedno $v_1$ ($v_2$).  
 \\
 Nato lahko vpeljemo Vizingovo domnevo: Za grafa G in H velja
 $$ \gamma(G)*\gamma(H) \leq \gamma(G\square H). $$
 Ta sicer ni dokazana v splošnem, je pa preverjena za zadosten nabor grafov, da jo je smiselno uporabiti v 
 tej nalogi.
 Iz tega lahko trdimo, da je najnižje možno dominacijsko število na 
-kartezičnem produktu dveh grafov tipa (SB) enako $4$. 
+kartezičnem produktu dveh grafov tipa (SB) enako $4$. Da je spodnja meja potencialno lahko dosežena, potrjujejo tudi rezultati, ki jih da program 
+$sb\_get\_all\_domination\_numbers.py$. Ti so shranjeni v datoteki $sb\_graphs\_domination\_numbers.txt$.
+V praksi se je izkazalo, da ima velika večina grafov tipa (SB) na do $10$
+vozliščih dominacijsko število enako $2$, preostali pa $3$.
 \\
 Zanimiva variacija problema bi bila, v kolikor bi bil kartezični produkt nekih
 dveh grafov tipa (SB) spet graf tipa (SB). Posledično bi takoj sledilo, da obstajajo 
 grafi tipa (SB) z dominacijskim številom vsaj $4$. Ko sva pregledala grafe na do $10$ vozliščih, 
-takšnega primera nisva našla. Problem je bil seveda premer kartezičnih produktov grafov. Vseh $125000$ grafov, ki 
-sva jih tako generirala je imelo premer $4$.
+takšnega primera nisva našla. Problem je bil seveda premer kartezičnih produktov grafov. Vseh $10000$ grafov, ki 
+sva jih tako generirala je imelo premer $4$. Ta problem je bil reševan z datoteko $sb\_cartesian.py$.
 \\
 Iskanje zgornjih mej za dominacijsko število kartezičnega produkta dveh grafov tipa (SB) je zahtevnejša.
 Najboljša zgornja meja, ki sva jo uspela najti je še ena Vizingova izpeljava:
 $$ \gamma(G\square H) \leq min\{\gamma(G)\lvert H \rvert, \gamma(H)\lvert G \rvert\}$$
+\\
+Za prvih $20$ najmanjših (SB) grafov sva poiskala dominacijska števila z Brute-Force metodo ($sb\_domination\_brute\_force.py$). 
+Koda kartezično pomnoži med seboj prvih $20$ (SB) grafov in pregleda vse dominacijske množice.
+Spodnja meja iz Vizingove domneve ($4$) ni bila dosežena. Le prvi trije kartezični produkti so imeli dominacijsko število 
+$5$, ostali za njimi pa $6$, $7$, $8$ ali $9$. 
 
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        Dominacijsko število & Število grafov \\ \hline
+        5 & 3 \\ \hline
+        6 & 75 \\ \hline
+        7 & 74 \\ \hline
+        8 & 43 \\ \hline
+        9 & 15 \\ \hline
+    \end{tabular}
+    \caption{Razporeditev kartezičnih produktov dveh med najmanjšimi 20 (SB) grafi glede na dominacijsko število.}
+    
+\end{table}
 
+%Tudi program $sb\_domination\_sampling\_method.py$ se ukvarja s spodnjimi mejami za dominacijska števila za naključnih $10000$ (SB) grafov (tudi višjih 
+%redov). Pomaga si z Vizingovo domnevo. Uporablja cached_results, da za posamezen graf izračuna dominacijsko število le enkrat.
+%\\
+Glede zgornje meje za dominacijsko število sva ugotovila, da gre po vsej verjetnosti z večanjem grafov v 
+neskončnost.
 
 \end{document}
