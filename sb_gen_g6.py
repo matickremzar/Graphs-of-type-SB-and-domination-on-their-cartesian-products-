@@ -1,6 +1,7 @@
 from sage.all import *
 import time
 
+
 ### Same as sb_gen.py, but we save graphs in graph6 format
 
 def is_sb(G: Graph) -> bool:
