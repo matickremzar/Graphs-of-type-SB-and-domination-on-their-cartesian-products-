@@ -47,6 +47,8 @@ cached_results = {}
 
 found_cartesian_products = []
 
+diams = []
+
 for i, s1 in enumerate(sampled_lines):
     line1 = lines[s1]
     g1 = Graph(line1)
@@ -60,6 +62,7 @@ for i, s1 in enumerate(sampled_lines):
         cart = g1.cartesian_product(g2)
 
         diam = cart.diameter()
+        diams.append(diam)
         if is_sb(cart) and diam == 2:
             print("Found SB!")
             #print(cart.graph6_string())
@@ -68,6 +71,8 @@ for i, s1 in enumerate(sampled_lines):
         else:
             #print("It's not an SB, diam: ", diam)
             pass
+
+print(Counter(diams))
 
 with open("sb_cartesian_products.txt", "a") as F:
     for c in found_cartesian_products:
