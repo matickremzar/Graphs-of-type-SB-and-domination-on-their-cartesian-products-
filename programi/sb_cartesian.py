@@ -42,7 +42,7 @@ domination_numbers = []
 
 cached_results = {}
 
-found_cartesian_products = []
+cartesian_products = []
 
 diams = []
 
@@ -52,25 +52,13 @@ for i, s1 in enumerate(sampled_lines):
 
     if i == len(sampled_lines) - 2:
         break
-    for s2 in sampled_lines[(i+1):]:
+    for s2 in sampled_lines[i:]:
         line2 = lines[s2]
         g2 = Graph(line2)
 
         cart = g1.cartesian_product(g2)
-
-        diam = cart.diameter()
-        diams.append(diam)
-        if is_sb(cart) and diam == 2:
-            print("Found SB!")
-            #print(cart.graph6_string())
-            found_cartesian_products.append(cart.graph6_string())
-            pass
-        else:
-            #print("It's not an SB, diam: ", diam)
-            pass
-
-print(Counter(diams))
+        cartesian_products.append(cart.graph6_string())
 
 with open("sb_cartesian_products.txt", "a") as F:
-    for c in found_cartesian_products:
+    for c in cartesian_products:
         F.write(c + "\n")
