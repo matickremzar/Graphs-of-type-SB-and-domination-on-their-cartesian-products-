@@ -8,13 +8,17 @@ with open("../podatki/sb_cartesian_products_dominating_numbers_below_9.txt", "r"
         g1, g2, d = line.rstrip().split()
         data.append(int(d))
 
-bins = np.arange(min(data), max(data)+1)
+bins = np.arange(min(data), max(data)+2)
 
 print(Counter(data))
 
-fig, axs = plt.subplots()
+fig, ax = plt.subplots()
 
-axs.hist(data, bins=bins)
+ax.hist(data, bins=bins)
 plt.xticks(bins)
+ax.set_title("Dominacijska števila kartezičnih produktov grafov tipa (SB) z 8 vozlišči ali manj")
+plt.yscale("log")
+plt.xlabel('Dominacijsko število')
+plt.ylabel('Število pojavitev')
 
-# plt.show()
+plt.show()
