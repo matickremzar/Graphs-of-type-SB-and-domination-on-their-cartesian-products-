@@ -14,7 +14,7 @@ start = time.time()
 doms = []
 res = ""
 
-with open("sb_cartesian_products_dominating_numbers_below_9.txt", "w") as F:
+with open("../podatki/sb_cartesian_products_dominating_numbers_below_9.txt", "w") as F:
     for i, g1 in enumerate(graphs):
         print(i)
         for g2 in graphs[i:]:
