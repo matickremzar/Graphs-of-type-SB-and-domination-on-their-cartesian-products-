@@ -13,7 +13,7 @@ with open("../podatki/sb_graphs_g6_10.txt", "r") as F:
     for line in F:
         lines.append(line.rstrip())
 
-    sampled_lines = random.sample(range(len(lines)), 1001)
+    sampled_lines = random.sample(range(len(lines)), 10001)
 
 domination_numbers = []
 
