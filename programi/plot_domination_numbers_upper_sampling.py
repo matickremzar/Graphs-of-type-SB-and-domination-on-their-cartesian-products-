@@ -3,7 +3,7 @@ from collections import Counter
 import numpy as np
 
 data = []
-with open("../podatki/sb_cartesian_products_dominating_numbers_below_9.txt", "r") as F:
+with open("../podatki/sb_cartesian_products_dominating_numbers_upper_sampled.txt", "r") as F:
     for line in F:
         g1, g2, d = line.rstrip().split()
         data.append(int(d))
@@ -17,4 +17,4 @@ fig, axs = plt.subplots()
 axs.hist(data, bins=bins)
 plt.xticks(bins)
 
-# plt.show()
+plt.show()
